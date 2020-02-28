@@ -47,6 +47,21 @@
     border: 1px solid #ccc;
      }
 
+     .Search {
+    outline: none;
+    color: #69b;
+    font-size: 14px;
+    width: 100%;
+    height: 38px;
+    padding: 0 42px 0 8px;
+    margin-right: -38px;
+    border: 0;
+    line-height: 38px;
+    display: inline-block;
+    vertical-align: top;
+     }
+
+
      .Searchbox .Searchbtn {
     width: 38px;
     text-align: center;
@@ -72,20 +87,6 @@
     line-height: 38px;
     width: 38px;
 }
-
-     .Search {
-    outline: none;
-    color: #69b;
-    font-size: 14px;
-    width: 100%;
-    height: 38px;
-    padding: 0 42px 0 8px;
-    margin-right: -38px;
-    border: 0;
-    line-height: 38px;
-    display: inline-block;
-    vertical-align: top;
-     }
 
      .Sortbox {
     display: inline-block;
@@ -165,6 +166,14 @@
      position: relative;
      }
 
+     .item:not(.off):hover .info {
+    bottom:100%; margin-bottom:-40px; background:#adf;
+     }
+
+    .item:not(.off):hover .cart{
+    top:0;
+    }
+
      .item .info {
     position: absolute;
     bottom: 0;
@@ -190,6 +199,63 @@
     text-align: right;
     font-weight: normal; 
     }
+
+    .item .cart{
+    position:absolute; 
+    top:100%; 
+    transition:top 0.5s; 
+    z-index:1; 
+    width:100%; 
+    height:100%; 
+    background:#fefefe; 
+    text-align:center; 
+    }
+
+    .item .cart .box{
+    height:40px; 
+    line-height:40px; 
+    width:80%; 
+    position:absolute; 
+    top:0; right:0; left:0; bottom:0;
+    margin:auto;
+    }
+
+    .item .cart .box input{
+    width:40px; height:40px; 
+    border:1px solid #ddd; 
+    text-align:center; margin:0 0 0 5px;
+    }
+    .item .cart .box .addtocart{
+    display:inline-block; 
+    width:90px; height:40px; 
+    background:#fe2; text-align:center; cursor:pointer;
+    }
+
+    .item.off{
+    filter: grayscale(100%); 
+    opacity:0.2;
+    }
+    
+    @media screen and (max-width:960px){
+        .item:not(.off):hover .info{bottom:0; margin-bottom:0; background:#fe2;}
+        .item:not(.off):hover .cart{top:auto;}
+        .item .info .price{right:35px; top:1px;}
+        .item .info:before{content:"\2946"; position:absolute; right:4px; top:0; font-size:25px; width:30px; height:40px; line-height:36px; text-align:right;}
+        .item .cart{height:40px; left:100%; bottom:0; top:auto; z-index:3; transition:left 0.3s; border-top:1px solid #ccc;}
+        .item .cart.on{left:0; top:auto;}
+        .item .cart:before{content:"\2945"; position:absolute; right:4px; top:0; font-size:25px; width:30px; height:40px; line-height:36px; text-align:right;}
+    }
+    
+    @media screen and (max-width:640px){
+        .topbar{padding:15px 0;}
+        .topbar .drops{height:auto; }
+        .searchbox{margin:4px auto; width:80%; display:block;}
+        .sortbox{margin:10px auto 0 auto; width:94%; display:block; border:0;}
+        .sortbox .sortoptions{border:0;}
+        .sortbox .sortoptions .opt:first-child{background:#ccc; color:#111; padding:0 8px 0 4px;}
+        .sortbox .sortoptions .opt:first-child:after{content:":"; position:absolute; right:5px; top:-1px;}
+        .sortbox .sortoptions .opt{position:relative; width:24%; display:inline-block; padding:0 4px; border:1px solid #ccc; text-align:center;}
+        
     </style>
     <script>
  "use strict"
@@ -306,7 +372,7 @@
     <div class="navborder">
         <div class="topnav">
             <div class="Searchbox">
-                <input class="Search" type="text" placeholder="Type to Search..." ><div class="Searchbtn"></div>
+                <input class="Search" type="text"  placeholder="Type to Search..." ><div class="Searchbtn"></div>
             </div><div class="Sortbox">
                 <div class="Sortoptions">
                     <div class="opt">Sort By</div>
